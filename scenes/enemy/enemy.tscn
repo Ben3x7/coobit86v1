@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://b82gxt0wyddp0"]
+
+[ext_resource type="Texture2D" uid="uid://ct5p3hd645ghl" path="res://assets/textures/enemy.png" id="1_mykbx"]
+[ext_resource type="Script" uid="uid://bgxco6514idlq" path="res://assets/scripts/enemy.gd" id="1_yfcn8"]
+[ext_resource type="AudioStream" uid="uid://bqrjk0vruhqxy" path="res://assets/sound/fx/death_enemy.wav" id="3_uk31c"]
+[ext_resource type="Script" uid="uid://dhxq0hla1widc" path="res://scenes/player/fx.gd" id="3_v8v5w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qemuu"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_teqmu"]
+radius = 4.67856
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pq7y2"]
+radius = 5.0
+height = 10.0
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+y_sort_enabled = true
+scale = Vector2(3, 3)
+collision_layer = 8
+collision_mask = 9
+script = ExtResource("1_yfcn8")
+damage = 1
+
+[node name="detect_player" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_player"]
+shape = SubResource("CircleShape2D_qemuu")
+debug_color = Color(0.748228, 0.204042, 1, 0.42)
+
+[node name="damege_zone" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damege_zone"]
+shape = SubResource("CircleShape2D_teqmu")
+debug_color = Color(0.979888, 0, 0.3843, 0.42)
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_mykbx")
+
+[node name="CollisionEnemy" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_pq7y2")
+disabled = true
+debug_color = Color(0.76, 0.456, 0, 0.376471)
+
+[node name="hp_bar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="hp_bar"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = -4.0
+offset_top = -10.0
+offset_right = 36.0
+offset_bottom = 13.0
+scale = Vector2(0.2, 0.2)
+text = "0"
+
+[node name="Fx" type="Node" parent="."]
+script = ExtResource("3_v8v5w")
+
+[node name="Death" type="AudioStreamPlayer" parent="Fx"]
+stream = ExtResource("3_uk31c")
+pitch_scale = 0.61
+bus = &"fx"
+
+[node name="Kick" type="AudioStreamPlayer" parent="Fx"]
+
+[connection signal="body_entered" from="detect_player" to="." method="_on_detect_player_body_entered"]
+[connection signal="body_exited" from="detect_player" to="." method="_on_detect_player_body_exited"]
+[connection signal="area_entered" from="damege_zone" to="." method="_on_damege_zone_area_entered"]
+[connection signal="area_exited" from="damege_zone" to="." method="_on_damege_zone_area_exited"]
+[connection signal="finished" from="Fx/Death" to="Fx" method="_on_death_finished"]

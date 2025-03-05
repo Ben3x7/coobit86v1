@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8w1cxse68j86"
+path="res://.godot/imported/The Black - Rolemusic.mp3-1a07cbe3cfe7aa68b0040e694d3cbca9.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/music/The Black - Rolemusic.mp3"
+dest_files=["res://.godot/imported/The Black - Rolemusic.mp3-1a07cbe3cfe7aa68b0040e694d3cbca9.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

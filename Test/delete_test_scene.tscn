@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://mnma3mpbjlg3"]
+
+[ext_resource type="Texture2D" uid="uid://ct5p3hd645ghl" path="res://assets/textures/enemy.png" id="1_vp13e"]
+
+[sub_resource type="GDScript" id="GDScript_r2pvy"]
+script/source = "extends CharacterBody2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	queue_free()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="deleteTestScene" type="Node2D"]
+
+[node name="mob" type="CharacterBody2D" parent="."]
+modulate = Color(0.0333333, 0, 1, 1)
+position = Vector2(136, 111)
+script = SubResource("GDScript_r2pvy")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="mob"]
+texture = ExtResource("1_vp13e")
+
+[node name="mob2" type="CharacterBody2D" parent="."]
+modulate = Color(0.0333333, 0, 1, 1)
+position = Vector2(191, 111)
+script = SubResource("GDScript_r2pvy")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="mob2"]
+texture = ExtResource("1_vp13e")
+
+[node name="mob3" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.0333333, 0, 1, 1)
+position = Vector2(257, 111)
+script = SubResource("GDScript_r2pvy")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="mob3"]
+texture = ExtResource("1_vp13e")

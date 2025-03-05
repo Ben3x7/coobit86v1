@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=4 uid="uid://cdb314mbmrts0"]
+
+[ext_resource type="Script" uid="uid://djcosi4a38svf" path="res://scenes/open_home.gd" id="1_nqv67"]
+[ext_resource type="Texture2D" uid="uid://d28apqcp333pj" path="res://assets/textures/house_floor.png" id="2_j3iuc"]
+[ext_resource type="PackedScene" uid="uid://bxerkblb5f8na" path="res://scenes/player/player.tscn" id="3_po5t8"]
+[ext_resource type="Texture2D" uid="uid://qorfm10obaff" path="res://assets/textures/object/sheet_object.png" id="4_lpfn3"]
+[ext_resource type="Texture2D" uid="uid://wm0u502ctbq8" path="res://assets/textures/tileWallWood.png" id="5_03wj2"]
+[ext_resource type="AudioStream" uid="uid://8w1cxse68j86" path="res://assets/sound/music/The Black - Rolemusic.mp3" id="6_bcekt"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2gw26"]
+texture = ExtResource("4_lpfn3")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xdvxv"]
+texture = ExtResource("5_03wj2")
+texture_region_size = Vector2i(8, 8)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:0/next_alternative_id = 3
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+2:0/next_alternative_id = 2
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:1/next_alternative_id = 2
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+2:1/next_alternative_id = 2
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:2/next_alternative_id = 2
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:2/next_alternative_id = 2
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+2:2/next_alternative_id = 2
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_i7ehq"]
+tile_size = Vector2i(8, 8)
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "WoodWall"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/1 = SubResource("TileSetAtlasSource_xdvxv")
+sources/0 = SubResource("TileSetAtlasSource_2gw26")
+
+[node name="OpenHome" type="Node2D"]
+script = ExtResource("1_nqv67")
+
+[node name="HouseFloor" type="Sprite2D" parent="."]
+modulate = Color(0.39, 0, 0, 1)
+z_index = -1
+texture_repeat = 2
+scale = Vector2(2, 2)
+texture = ExtResource("2_j3iuc")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 180)
+
+[node name="Player" parent="." instance=ExtResource("3_po5t8")]
+position = Vector2(58, 88)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+modulate = Color(0.578404, 0.487524, 0.529254, 0.8)
+z_index = -1
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQABAAAAAAACAAAAAQABAAAAAAADAAAAAQABAAAAAAAEAAAAAAABAAAAAAAFAAAAAQABAAAAAAAGAAAAAQABAAAAAAAHAAAAAQABAAAAAAAIAAAAAAABAAAAAAAJAAAAAAABAAAAAAAKAAAAAQABAAAAAAALAAAAAQABAAAAAAAMAAAAAQABAAAAAAANAAAAAQABAAAAAAAOAAAAAQABAAAAAAAPAAAAAQABAAAAAAAQAAAAAQABAAAAAAARAAAAAQABAAAAAAASAAAAAQABAAAAAAATAAAAAQABAAAAAAAUAAAAAQABAAAAAAAVAAAAAAABAAAAAAAWAAAAAAABAAAAAAAXAAAAAQABAAAAAAAYAAAAAQABAAAAAAAZAAAAAQABAAAAAAAaAAAAAAABAAAAAAAbAAAAAAABAAAAAAAcAAAAAQABAAAAAAAdAAAAAQABAAAAAAAeAAAAAQABAAAAAAAfAAAAAQACAAAAAAAfAAEAAQACAAEAAAAfAAIAAQACAAEAAAAfAAMAAQACAAEAAAAfAAQAAQACAAEAAAAfAAUAAQACAAEAAAAfAAYAAQACAAEAAAAfAAcAAQACAAEAAAAfAAgAAQACAAEAAAAfAAkAAQACAAEAAAAfAAoAAQACAAEAAAAfAAsAAQACAAEAAAAfAAwAAQACAAEAAAAfAA0AAQACAAEAAAAfAA4AAQACAAEAAAAfAA8AAQACAAEAAAAfABAAAQACAAEAAAAfABEAAQACAAEAAAAfABIAAQACAAEAAAAfABMAAQACAAEAAAAfABQAAQACAAEAAAAfABUAAQACAAEAAAAfABYAAQACAAIAAAAeABYAAQABAAIAAAAdABYAAQABAAIAAAAcABYAAQABAAIAAAAbABYAAQABAAIAAAAaABYAAQABAAIAAAAZABYAAQABAAIAAAAYABYAAQABAAIAAAAXABYAAQABAAIAAAAWABYAAQABAAIAAAAVABYAAQABAAIAAAAUABYAAQABAAIAAAATABYAAQABAAIAAAASABYAAQABAAIAAAARABYAAQABAAIAAAAQABYAAQABAAIAAAAPABYAAQABAAIAAAAOABYAAQABAAIAAAANABYAAQABAAIAAAAMABYAAQABAAIAAAALABYAAQABAAIAAAAKABYAAQABAAIAAAAJABYAAQABAAIAAAAFABYAAQABAAIAAAAEABYAAQABAAIAAAADABYAAQABAAIAAAACABYAAQABAAIAAAABABYAAQABAAIAAAAAABYAAQAAAAIAAAAAABUAAQAAAAEAAAAAABQAAQAAAAEAAAAAABMAAQAAAAEAAAAAABIAAQAAAAEAAAAAABEAAQAAAAEAAAAAABAAAQAAAAEAAAAAAA8AAQAAAAEAAAAAAA4AAQAAAAEAAAAAAA0AAQAAAAEAAAAAAAwAAQAAAAEAAAAAAAsAAQAAAAEAAAAAAAoAAQAAAAEAAAAAAAkAAQAAAAEAAAAAAAgAAQAAAAEAAAAAAAcAAQAAAAEAAAAAAAYAAQAAAAEAAAAAAAUAAQAAAAEAAAAAAAQAAQAAAAEAAAAAAAMAAQAAAAEAAAAAAAIAAQAAAAEAAAAAAAEAAQAAAAEAAAA=")
+tile_set = SubResource("TileSet_i7ehq")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_bcekt")
+autoplay = true

@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://71rqa0yc8xux"]
+
+[ext_resource type="Script" uid="uid://dcpsncl43u5gm" path="res://assets/scripts/mecha/mecha_01_v_46.gd" id="1_2g3mp"]
+[ext_resource type="Texture2D" uid="uid://bb7s7nlbxihc8" path="res://assets/textures/mecha/Mecha-01-v46.png" id="1_awx7m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjrip"]
+radius = 11.25
+height = 32.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_jfsu5"]
+font_size = 100
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hdv64"]
+radius = 7.0
+
+[node name="Mecha01-v46" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_2g3mp")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="CollisionDetection" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, 1.5)
+shape = SubResource("CapsuleShape2D_qjrip")
+debug_color = Color(0.889797, 0.000258558, 0.795062, 0.42)
+
+[node name="ShowEntryInformation" type="Label" parent="DetectionArea"]
+visible = false
+offset_left = -11.75
+offset_top = -19.75
+offset_right = 770.25
+offset_bottom = 117.25
+scale = Vector2(0.03, 0.03)
+text = "Press E to enter."
+label_settings = SubResource("LabelSettings_jfsu5")
+
+[node name="CollisionMecha" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6.5)
+shape = SubResource("CapsuleShape2D_hdv64")
+
+[node name="SpriteMecha" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_awx7m")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

@@ -1,0 +1,118 @@
+[gd_scene load_steps=18 format=4 uid="uid://d3vyes2y2s3ud"]
+
+[ext_resource type="Texture2D" uid="uid://ct2n81kxf4o57" path="res://assets/textures/land.png" id="1_kbfft"]
+[ext_resource type="PackedScene" uid="uid://fm0h3wpkxuwd" path="res://scenes/insideHouse/open_Home.tscn" id="3_6ay6s"]
+[ext_resource type="AudioStream" uid="uid://3whu8vichs5i" path="res://assets/sound/music/Top City - Ozzed.mp3" id="3_cijg1"]
+[ext_resource type="PackedScene" uid="uid://bfi1ykg28seud" path="res://assets/object/structure/houseVillage/home.tscn" id="4_j5sfa"]
+[ext_resource type="PackedScene" uid="uid://dc3ksryro22ic" path="res://scenes/insideHouse/open_Home2.tscn" id="5_slfny"]
+[ext_resource type="PackedScene" uid="uid://b0wcq8i412ycx" path="res://scenes/insideHouse/open_Home3.tscn" id="7_jmfye"]
+[ext_resource type="PackedScene" uid="uid://b82gxt0wyddp0" path="res://scenes/enemy/enemy.tscn" id="8_2fap2"]
+[ext_resource type="PackedScene" uid="uid://bxerkblb5f8na" path="res://scenes/player/player.tscn" id="8_q3wsq"]
+[ext_resource type="PackedScene" uid="uid://71rqa0yc8xux" path="res://assets/object/mecha/mecha_01_v_46.tscn" id="9_imbo5"]
+[ext_resource type="PackedScene" uid="uid://cqe57jcivd1g7" path="res://scenes/insideHouse/open_Home4.tscn" id="9_u1x12"]
+[ext_resource type="PackedScene" uid="uid://ljx1c4e57sv7" path="res://assets/object/structure/houseVillage/home2.tscn" id="10_12wja"]
+[ext_resource type="PackedScene" uid="uid://cdb314mbmrts0" path="res://scenes/insideHouse/open_Home5.tscn" id="11_gr8xa"]
+[ext_resource type="PackedScene" uid="uid://cfc8mpddowwlm" path="res://scenes/insideHouse/open_Home6.tscn" id="13_1oo6b"]
+[ext_resource type="PackedScene" uid="uid://cn8sx34gnhckt" path="res://assets/object/structure/houseVillage/home3.tscn" id="13_lvhj6"]
+[ext_resource type="PackedScene" uid="uid://cmywojdh63ben" path="res://assets/object/structure/houseVillage/home4.tscn" id="14_igc53"]
+[ext_resource type="PackedScene" uid="uid://7oj6ud1nk3rk" path="res://assets/object/structure/houseVillage/home5.tscn" id="15_fdv0v"]
+[ext_resource type="PackedScene" uid="uid://kl8medvp53mu" path="res://assets/object/structure/houseVillage/home6.tscn" id="16_pwy51"]
+
+[node name="MainWorld" type="Node2D"]
+y_sort_enabled = true
+
+[node name="grass" type="Sprite2D" parent="."]
+texture_repeat = 2
+scale = Vector2(2, 2)
+texture = ExtResource("1_kbfft")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 360)
+region_filter_clip_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="HomeGroup" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Home" parent="HomeGroup" instance=ExtResource("4_j5sfa")]
+position = Vector2(96, 95)
+room = ExtResource("3_6ay6s")
+
+[node name="CollisionShape2D" parent="HomeGroup/Home/DisplayPush" index="0"]
+debug_color = Color(0.24, 1, 0.822667, 0.203922)
+
+[node name="Home2" parent="HomeGroup" instance=ExtResource("10_12wja")]
+position = Vector2(97, 256)
+room = ExtResource("5_slfny")
+
+[node name="CollisionShape2D" parent="HomeGroup/Home2/DisplayPush" index="0"]
+debug_color = Color(0.24, 1, 0.822667, 0.203922)
+
+[node name="Home3" parent="HomeGroup" instance=ExtResource("13_lvhj6")]
+position = Vector2(257, 48)
+room = ExtResource("7_jmfye")
+
+[node name="CollisionShape2D" parent="HomeGroup/Home3/DisplayPush" index="0"]
+debug_color = Color(0.24, 1, 0.822667, 0.203922)
+
+[node name="Home4" parent="HomeGroup" instance=ExtResource("14_igc53")]
+position = Vector2(208, 400)
+room = ExtResource("9_u1x12")
+
+[node name="CollisionShape2D" parent="HomeGroup/Home4/DisplayPush" index="0"]
+debug_color = Color(0.24, 1, 0.822667, 0.203922)
+
+[node name="Home5" parent="HomeGroup" instance=ExtResource("15_fdv0v")]
+position = Vector2(352, 83)
+room = ExtResource("11_gr8xa")
+
+[node name="CollisionShape2D" parent="HomeGroup/Home5/DisplayPush" index="0"]
+debug_color = Color(0.24, 1, 0.822667, 0.203922)
+
+[node name="Home6" parent="HomeGroup" instance=ExtResource("16_pwy51")]
+position = Vector2(352, 397)
+room = ExtResource("13_1oo6b")
+
+[node name="CollisionShape2D" parent="HomeGroup/Home6/DisplayPush" index="0"]
+debug_color = Color(0.24, 1, 0.822667, 0.203922)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cijg1")
+volume_db = 9.706
+autoplay = true
+bus = &"music"
+
+[node name="groupEnemys" type="Node2D" parent="."]
+
+[node name="Enemy" parent="groupEnemys" instance=ExtResource("8_2fap2")]
+position = Vector2(524, 464)
+
+[node name="Enemy2" parent="groupEnemys" instance=ExtResource("8_2fap2")]
+position = Vector2(400, 79)
+
+[node name="Enemy3" parent="groupEnemys" instance=ExtResource("8_2fap2")]
+position = Vector2(873, 95)
+
+[node name="Enemy4" parent="groupEnemys" instance=ExtResource("8_2fap2")]
+position = Vector2(873, 400)
+
+[node name="Player" parent="." instance=ExtResource("8_q3wsq")]
+unique_name_in_owner = true
+position = Vector2(431, 268)
+
+[node name="Mecha01-v46" parent="." instance=ExtResource("9_imbo5")]
+position = Vector2(-96, 768)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAADABAAAAAEAAAAAAAEABAAAAAEAAAAAAAFABAAAAAEAAAAAAAGABAAAAAEAAAAAAAHABAAAAAEAAAAAAADABEAAAAEAAAAAAAEABEAAAAEAAAAAAAFABEAAAAEAAAAAAAGABEAAAAEAAAAAAAHABEAAAAEAAAAAAACABEAAAAEAAAAAAACABAAAAAEAAAAAAABABEAAAAEAAAAAAAAABEAAAAEAAAAAAAAABAAAAAEAAAAAAABABAAAAAEAAAAAAABAA8AAAAEAAAAAAAAAA8AAAAEAAAAAAAAAA4AAAAEAAAAAAAAAA0AAAAEAAAAAAAAAAwAAAAEAAAAAAAAAAsAAAAEAAAAAAABAAwAAAAEAAAAAAABAA0AAAAEAAAAAAABAA4AAAAEAAAAAAACAA4AAAAEAAAAAAACAA8AAAAEAAAAAAADAA8AAAAEAAAAAAADAA4AAAAEAAAAAAACAA0AAAAEAAAAAAAEAA8AAAAEAAAAAAABAAsAAAAEAAAAAAABAAoAAAAEAAAAAAAAAAoAAAAEAAAAAAACAAsAAAAEAAAAAAACAAwAAAAEAAAAAAADAAwAAAAEAAAAAAADAA0AAAAEAAAAAAAEAA0AAAAEAAAAAAAEAA4AAAAEAAAAAAAFAA4AAAAEAAAAAAAFAA8AAAAEAAAAAAAGAA4AAAAEAAAAAAAGAA8AAAAEAAAAAAAHAA4AAAAEAAAAAAAHAA8AAAAEAAAAAAAIAA4AAAAEAAAAAAAIAA8AAAAEAAAAAAAIABAAAAAEAAAAAAAIABEAAAAEAAAAAAAJAA4AAAAEAAAAAAAJAA8AAAAEAAAAAAAJABAAAAAEAAAAAAAJABEAAAAEAAAAAAAKABAAAAAEAAAAAAAKABEAAAAEAAAAAAALABAAAAAEAAAAAAALABEAAAAEAAAAAAAMABAAAAAEAAAAAAAMABEAAAAEAAAAAAANABAAAAAEAAAAAAANABEAAAAEAAAAAAAOABAAAAAEAAAAAAAOABEAAAAEAAAAAAAPABAAAAAEAAAAAAAPABEAAAAEAAAAAAAQABAAAAAEAAAAAAAQABEAAAAEAAAAAAARABAAAAAEAAAAAAARABEAAAAEAAAAAAASABAAAAAEAAAAAAASABEAAAAEAAAAAAATABAAAAAEAAAAAAATABEAAAAEAAAAAAAUABAAAAAEAAAAAAAUABEAAAAEAAAAAAAVABAAAAAEAAAAAAAVABEAAAAEAAAAAAAWABAAAAAEAAAAAAAWABEAAAAEAAAAAAAXABAAAAAEAAAAAAAXABEAAAAEAAAAAAAYABAAAAAEAAAAAAAYABEAAAAEAAAAAAAZABAAAAAEAAAAAAAZABEAAAAEAAAAAAAZAAwAAAAEAAAAAAAZAA0AAAAEAAAAAAAZAA4AAAAEAAAAAAAZAA8AAAAEAAAAAAAXAAwAAAAEAAAAAAAXAA0AAAAEAAAAAAAXAA4AAAAEAAAAAAAXAA8AAAAEAAAAAAAYAAwAAAAEAAAAAAAYAA0AAAAEAAAAAAAYAA4AAAAEAAAAAAAYAA8AAAAEAAAAAAAYAP//AAAEAAAAAAAYAAAAAAAEAAAAAAAYAAEAAAAEAAAAAAAYAAIAAAAEAAAAAAAYAAMAAAAEAAAAAAAYAAQAAAAEAAAAAAAYAAUAAAAEAAAAAAAYAAYAAAAEAAAAAAAYAAcAAAAEAAAAAAAYAAgAAAAEAAAAAAAYAAkAAAAEAAAAAAAYAAoAAAAEAAAAAAAYAAsAAAAEAAAAAAAZAP//AAAEAAAAAAAZAAAAAAAEAAAAAAAZAAEAAAAEAAAAAAAZAAIAAAAEAAAAAAAZAAMAAAAEAAAAAAAZAAQAAAAEAAAAAAAZAAUAAAAEAAAAAAAZAAYAAAAEAAAAAAAZAAcAAAAEAAAAAAAZAAgAAAAEAAAAAAAZAAkAAAAEAAAAAAAZAAoAAAAEAAAAAAAZAAsAAAAEAAAAAAAaAP//AAAEAAAAAAAaAAAAAAAEAAAAAAAaAAEAAAAEAAAAAAAaAAIAAAAEAAAAAAAaAAMAAAAEAAAAAAAaAAQAAAAEAAAAAAAaAAUAAAAEAAAAAAAaAAYAAAAEAAAAAAAaAAcAAAAEAAAAAAAaAAgAAAAEAAAAAAAaAAkAAAAEAAAAAAAaAAoAAAAEAAAAAAAaAAsAAAAEAAAAAAABAP//AAAEAAAAAAABAAAAAAAEAAAAAAACAP//AAAEAAAAAAACAAAAAAAEAAAAAAADAP//AAAEAAAAAAADAAAAAAAEAAAAAAAEAP//AAAEAAAAAAAEAAAAAAAEAAAAAAAFAP//AAAEAAAAAAAFAAAAAAAEAAAAAAAGAP//AAAEAAAAAAAGAAAAAAAEAAAAAAAHAP//AAAEAAAAAAAHAAAAAAAEAAAAAAAIAP//AAAEAAAAAAAIAAAAAAAEAAAAAAAJAP//AAAEAAAAAAAJAAAAAAAEAAAAAAAKAP//AAAEAAAAAAAKAAAAAAAEAAAAAAALAP//AAAEAAAAAAALAAAAAAAEAAAAAAAMAP//AAAEAAAAAAAMAAAAAAAEAAAAAAANAP//AAAEAAAAAAANAAAAAAAEAAAAAAAOAP//AAAEAAAAAAAOAAAAAAAEAAAAAAAPAP//AAAEAAAAAAAPAAAAAAAEAAAAAAAQAP//AAAEAAAAAAAQAAAAAAAEAAAAAAARAP//AAAEAAAAAAARAAAAAAAEAAAAAAASAP//AAAEAAAAAAASAAAAAAAEAAAAAAATAP//AAAEAAAAAAATAAAAAAAEAAAAAAAUAP//AAAEAAAAAAAUAAAAAAAEAAAAAAAVAP//AAAEAAAAAAAVAAAAAAAEAAAAAAAWAP//AAAEAAAAAAAWAAAAAAAEAAAAAAAXAP//AAAEAAAAAAAXAAAAAAAEAAAAAAAAAAkAAAAEAAAAAAAAAAgAAAAEAAAAAAAAAAcAAAAEAAAAAAAAAAYAAAAEAAAAAAAAAAUAAAAEAAAAAAAAAAQAAAAEAAAAAAAAAAMAAAAEAAAAAAABAAMAAAAEAAAAAAABAAIAAAAEAAAAAAABAAEAAAAEAAAAAAAAAAEAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAIAAAAEAAAAAAAHAAwAAAAAAAEAAAAEAAgAAAAAAAEAAAASAA0AAAAAAAEAAAARAAYAAAAAAAEAAAA=")
+
+[connection signal="child_entered_tree" from="Player/Sword" to="Player" method="_on_sword_child_entered_tree"]
+
+[editable path="HomeGroup/Home"]
+[editable path="HomeGroup/Home2"]
+[editable path="HomeGroup/Home3"]
+[editable path="HomeGroup/Home4"]
+[editable path="HomeGroup/Home5"]
+[editable path="HomeGroup/Home6"]
+[editable path="Player"]
